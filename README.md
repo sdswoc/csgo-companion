@@ -1,1 +1,1 @@
-"# csgo-companion" 
+# csgo-companion
