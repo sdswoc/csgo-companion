@@ -45,21 +45,22 @@ int main()
 		cout<<"Enter the serial number of an active server to join>>";
 		cin>>ch;
 		servAdr.sin_addr.S_un.S_addr=inet_addr(ip[ch]);
-		if(connect(client,(sockaddr*)&servAdr,sizeof(servAdr))==0)
+		SOCKET new_client=socket(AF_INET,SOCK_STREAM,IPPROTO_IP);
+		if(connect(new_client,(sockaddr*)&servAdr,sizeof(servAdr))==0)
 		{
 			memset(msg,0,sizeof(msg));
 			strcpy(msg,"J");
-			send(client,(char*)&msg,sizeof(msg),0);
+			send(new_client,(char*)&msg,sizeof(msg),0);
 			memset(msg,0,sizeof(msg));
-			send(client,(char*)&name,sizeof(name),0);
-			recv(client,(char*)&msg,sizeof(msg),0);
+			send(new_client,(char*)&name,sizeof(name),0);
+			recv(new_client,(char*)&msg,sizeof(msg),0);
 			cout<<msg<<" is the admin"<<endl;
 			cout<<"Game is going to run";
 			rungame();
 		}
 		else
 		{
-			cout<<"Server Shutdown"<<endl;
+			cout<<ip[ch]<<"== Server Shutdown"<<endl;
 		}
 	}
 	
