@@ -28,19 +28,19 @@ int main()
 		SOCKET server= socket(AF_INET,SOCK_STREAM,IPPROTO_TCP);
 		bind(server, (sockaddr*)&servAdr,sizeof(servAdr));
 		cout<<"Waiting for connections..."<<endl;
-		//listen(server,SOMAXCONN);
+		listen(server,1);
 		sockaddr_in clientAdr;
 		int len=sizeof(clientAdr);
 		
 		SOCKET client;
 		while(flag)
 		{
-			listen(server,SOMAXCONN);
 			client=accept(server,(sockaddr*)&clientAdr,&len);
 			recv(client,(char*)&msg,sizeof(msg),0);
 			if(!strcmp(msg,"C"))
 			{
 				send(client,(char*)&server_name,sizeof(server_name),0);
+				closesocket(client);
 			}
 			else if(!strcmp(msg,"J"))
 			{
