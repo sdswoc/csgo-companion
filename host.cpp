@@ -1,6 +1,6 @@
 #include<iostream>
 #include<fstream>
-#include<winsock2.h>
+#include<windows.h>
 using namespace std;
 void rungame();
 int main()
@@ -24,7 +24,7 @@ int main()
 		sockaddr_in servAdr;
 		servAdr.sin_family=AF_INET;
 		servAdr.sin_addr.S_un.S_addr=INADDR_ANY;
-		servAdr.sin_port=htons(1102);
+		servAdr.sin_port=htons(11022);
 		SOCKET server= socket(AF_INET,SOCK_STREAM,IPPROTO_TCP);
 		bind(server, (sockaddr*)&servAdr,sizeof(servAdr));
 		cout<<"Waiting for connections..."<<endl;
@@ -37,12 +37,12 @@ int main()
 		{
 			client=accept(server,(sockaddr*)&clientAdr,&len);
 			recv(client,(char*)&msg,sizeof(msg),0);
-			if(!strcmp(msg,"C"))
+			if(!strcmp(msg,"C"))							//If sent query is "C" then send the server name
 			{
 				send(client,(char*)&server_name,sizeof(server_name),0);
 				closesocket(client);
 			}
-			else if(!strcmp(msg,"J"))
+			else if(!strcmp(msg,"J"))						//If sent query is "J" then connect with the client and run the game
 			{
 				recv(client,(char*)&msg,sizeof(msg),0);
 				cout<<msg<<" joined"<<endl;
@@ -50,12 +50,31 @@ int main()
 				flag=false;
 			}
 		}
-		cout<<"Starting the game";
+		cout<<"Starting the game"<<endl;
 		rungame();
 		
 	}
+	WSACleanup();
+	system("source.exe");
 }
 void rungame()
 {
-	cin.get();
+	system("copy csgo\\cfg\\autoexec.cfg original_autoexec.cfg > dustbin");
+	fstream file;
+	file.open("csgo\\cfg\\autoexec.cfg",ios::app);
+	file<<"sv_lan \"1\"";
+	file.close();
+	file.open("csgo\\cfg\\config.cfg",ios::app);
+	file<<"map \"de_dust2\"";
+	file.close();
+	cout<<"Map is de_dust2\nDont close this window directly after coming back from game."<<endl;
+	cout<<"Game is running in  3..";
+	Sleep(1000);
+	cout<<"2..";
+	Sleep(1000);
+	cout<<"1..\n";
+	Sleep(1000);
+	system("loader.exe");
+	system("pause");
+	system("copy original_autoexec.cfg csgo\\cfg\\autoexec.cfg > dustbin");
 }
