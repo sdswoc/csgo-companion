@@ -15,11 +15,13 @@ char* search_games()
 	int i,j,k;
 	char temp[3];
 	char ip[16];
-	for(i=0;i<256;i++)
-	for(j=0;j<256;j++)
-	for(k=0;k<256;k++)
+	//for(i=0;i<256;i++)
+	i=168;
+	//for(j=0;j<256;j++)
+	j=1;
+	for(k=158;k<159;k++)
 	{
-		strcpy(ip,"172.");
+		strcpy(ip,"192.");
 		itoa(i,temp,10);
 		strcat(ip,temp);
 		strcat(ip,".");

@@ -11,6 +11,7 @@ void join_lobby(char ip[16] , char name[50])
 		servAdr.sin_port=htons(11022);
 		servAdr.sin_addr.S_un.S_addr=inet_addr(ip);
 		SOCKET new_client=socket(AF_INET,SOCK_STREAM,IPPROTO_IP);
+		SOCKET last_client=socket(AF_INET,SOCK_STREAM,IPPROTO_IP);
 		if(connect(new_client,(sockaddr*)&servAdr,sizeof(servAdr))==0)
 		{
 			memset(msg,0,sizeof(msg));
@@ -22,6 +23,13 @@ void join_lobby(char ip[16] , char name[50])
 			cout<<msg<<" is the admin"<<endl;
 			cout<<"Game is going to run";
 			rungame_client(ip);
+			connect(last_client,(sockaddr*)&servAdr,sizeof(servAdr));
+			memset(msg,0,sizeof(msg));
+			strcpy(msg,"L");												//Send "J" query to join the specified server
+			send(last_client,(char*)&msg,sizeof(msg),0);
+			send(last_client,(char*)&name,sizeof(name),0);
+			cout<<"You Left."<<endl;
+			system("pause");
 		}
 		else
 		{
