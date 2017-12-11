@@ -17,7 +17,7 @@ char* search_games()
 	char ip[16];
 	for(i=0;i<256;i++)
 	for(j=0;j<256;j++)
-	for(k=158;k<159;k++)
+	for(k=0;k<256;k++)
 	{
 		strcpy(ip,"192.");
 		itoa(i,temp,10);
