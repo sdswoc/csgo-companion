@@ -3,8 +3,8 @@
 #include "rungame_client.h"
 void join_lobby(char ip[16] , char name[50])
 {
-	if(ip!=NULL){
-	
+	if(ip!=NULL)
+	{
 		char msg[1024];
 		sockaddr_in servAdr;
 		servAdr.sin_family=AF_INET;

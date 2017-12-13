@@ -21,6 +21,4 @@ void rungame_host()
 	cout<<"1..\n";
 	Sleep(1000);
 	system("start ..\\loader.exe");
-	//system("copy original_autoexec.cfg ..\\csgo\\cfg\\autoexec.cfg > dustbin");
-	
 }

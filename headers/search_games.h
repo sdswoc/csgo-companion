@@ -19,7 +19,7 @@ char* search_games()
 	for(j=0;j<256;j++)
 	for(k=0;k<256;k++)
 	{
-		strcpy(ip,"192.");
+		strcpy(ip,"172.");
 		itoa(i,temp,10);
 		strcat(ip,temp);
 		strcat(ip,".");
@@ -31,7 +31,6 @@ char* search_games()
 		servAdr.sin_addr.S_un.S_addr=inet_addr(ip);
 		if(connect(client,(sockaddr*)&servAdr,sizeof(servAdr))==0)
 		{
-			
 			memset(msg,0,sizeof(msg));
 			strcpy(msg,"C");											//Send "C" query to fetch server name to display the list of games
 			send(client,(char*)&msg,sizeof(msg),0);

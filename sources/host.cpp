@@ -21,8 +21,7 @@ int main()
 	
 	if(WSAStartup(MAKEWORD(2,2),&data)==0)
 	{
-		lobby(name);
-		
+		lobby(name);	
 	}
 	else
 	{

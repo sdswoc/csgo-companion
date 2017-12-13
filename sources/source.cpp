@@ -17,8 +17,6 @@ int main()
 	intro();
 	fetch_info();
 	menu();
-		
-	
 }
 void firstTimeSetup()
 {
