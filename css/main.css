@@ -1,6 +1,6 @@
 .jumbotron {
     margin-bottom: 0px;
-    background-image: url(../img/cover-jumbo.jpg);
+    background-image: url(/img/cover-jumbo.jpg);
     background-position: 0% 25%;
     background-size: cover;
     background-repeat: no-repeat;

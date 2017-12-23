@@ -1,0 +1,22 @@
+{
+  "name": "csgo-companion",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SDS-WOC/csgo-companion.git"
+  },
+  "author": "Kanav Gupta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SDS-WOC/csgo-companion/issues"
+  },
+  "homepage": "https://github.com/SDS-WOC/csgo-companion#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
