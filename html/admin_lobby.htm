@@ -8,6 +8,7 @@
   <script src="/js/jquery.min.js"></script>
   <script src="/js/popper.min.js"></script>
   <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/socket.io-1.2.0.js"></script>
   <link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 <body>
@@ -35,11 +36,11 @@
         <table class="table table-striped">
           <tr>
             <td><strong>Server's Name:</strong></td>
-            <td>Sample Server</td>
+            <td><?php echo $_GET["s_name"]; ?></td>
           </tr>
           <tr>
             <td><strong>Map:</strong></td>
-            <td>de_dust2</td>
+            <td><?php echo $_GET["map"]; ?></td>
           </tr>
           <tr>
             <td><strong>Number of players:</strong></td>
@@ -47,7 +48,7 @@
           </tr>
           <tr>
             <td><strong>Password:</strong></td>
-            <td>1234</td>
+            <td><?php echo $_GET["s_pwd"]; ?></td>
           </tr>
         </table>
         <button class="btn btn-success">Run Game</button>
