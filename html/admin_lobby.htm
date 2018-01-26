@@ -8,8 +8,27 @@
   <script src="/js/jquery.min.js"></script>
   <script src="/js/popper.min.js"></script>
   <script src="/js/bootstrap.min.js"></script>
-  <script src="/js/socket.io-1.2.0.js"></script>
   <link rel="stylesheet" type="text/css" href="/css/main.css">
+  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDuc3egBFTGAgHPaOKyvGad94joyU4pP7c",
+      authDomain: "csgo-companion-kg.firebaseapp.com",
+      databaseURL: "https://csgo-companion-kg.firebaseio.com",
+      projectId: "csgo-companion-kg",
+      storageBucket: "",
+      messagingSenderId: "656613294189"
+    };
+    firebase.initializeApp(config);
+    var host_info;
+    $.ajax({
+      url: '/host_info.JSON',
+      dataType: 'json',
+      async : false,
+      success : function (result) { host_info= result;}
+    });
+  </script>
 </head>
 <body>
 	<nav class="navbar navbar-expand-sm bg-light navbar-light sticky-top">
@@ -36,23 +55,23 @@
         <table class="table table-striped">
           <tr>
             <td><strong>Server's Name:</strong></td>
-            <td><?php echo $_GET["s_name"]; ?></td>
+            <td id='s_name'></td>
           </tr>
           <tr>
             <td><strong>Map:</strong></td>
-            <td><?php echo $_GET["map"]; ?></td>
+            <td id='map'></td>
           </tr>
           <tr>
             <td><strong>Number of players:</strong></td>
-            <td>1/32</td>
+            <td>1</td>
           </tr>
           <tr>
             <td><strong>Password:</strong></td>
-            <td><?php echo $_GET["s_pwd"]; ?></td>
+            <td id="s_pwd"></td>
           </tr>
         </table>
         <button class="btn btn-success">Run Game</button>
-        <button class="btn btn-danger">Close Lobby</button>
+        <button class="btn btn-danger" onclick=closeLobby()>Close Lobby</button>
   		</div>
   			
   		<div class="col-sm-3 container-fluid">
@@ -61,8 +80,8 @@
 	</div>
   <div class="row">
     <div class="col-sm-8">
-      <ul style="overflow:hidden; overflow-y:scroll; height:300px;" class="list-group">
-        <li class="list-group-item"><strong>Bhavik: </strong>Hello</li>
+      <ul style="overflow:hidden; overflow-y:scroll; height:300px;" class="list-group" id="msgs">
+        <!--<li class="list-group-item"><strong>Bhavik: </strong>Hello</li> -->
       </ul>
       <div class="content row">
         <div class="col-sm-11"><input type="text" name="message" class="form-control"></div>
@@ -71,10 +90,11 @@
     </div>
     <div class="col-sm-4">
         <div class="container-fluid"><strong>List of players</strong></div>
-        <ul style="overflow:hidden; overflow-y:scroll; height:300px; border-width: 1px;" class="list-group">
-        <li class="list-group-item">Bhavik <span class="badge badge-info">Admin</span><button class="btn btn-danger" style="float: right;">Kick</button></li>
+        <ul style="overflow:hidden; overflow-y:scroll; height:300px; border-width: 1px;" class="list-group" id='players'>
+        <!--<li class="list-group-item">Bhavik <span class="badge badge-info">Admin</span><button class="btn btn-danger" style="float: right;">Kick</button></li>-->
       </ul>
     </div>
   </div>
+  <script type="text/javascript" src="/js/admin_lobby.js"></script>
 </body>
 </html>
